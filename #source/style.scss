@@ -1,0 +1,796 @@
+@import "nullstyle.scss";
+@import "news.scss";
+@import "variables.scss";
+@import "new-format.scss";
+@import "blog.scss";
+
+//===============================================
+//ШРИФТЫ
+//&display=swap&subset=cyrillic-ext
+@import url(https://fonts.googleapis.com/css?family=El+Messiri:regular,700&display=swap&subset=cyrillic-ext);
+
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://maevalar.github.io/RitmStyle/fonts/proximanova_regular.eot');
+	src: local('☺'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_regular.woff') format('woff'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_regular.ttf') format('truetype'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://maevalar.github.io/RitmStyle/fonts/proximanova_light.eot');
+	src: local('☺'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_light.woff') format('woff'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_light.ttf') format('truetype'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_light.svg') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://maevalar.github.io/RitmStyle/fonts/proximanova_bold.eot');
+	src: local('☺'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_bold.woff') format('woff'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_bold.ttf') format('truetype'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_bold.svg') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://maevalar.github.io/RitmStyle/fonts/proximanova_semibold.eot');
+	src: local('☺'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_semibold.woff') format('woff'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_semibold.ttf') format('truetype'), url('https://maevalar.github.io/RitmStyle/fonts/proximanova_semibold.svg') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+//===============================================\
+
+
+//===============================================
+//ПАРАМЕТРЫ КОНТЕЙНЕРА
+.container{
+    max-width: $maxWidthContainer;
+    margin: 0px auto;
+    @media (max-width: $md1){
+        max-width: 970px;
+    }
+    @media (max-width: $md2) {
+        max-width: 750px;
+    }
+    @media (max-width: $md3) {
+        max-width: none;
+        padding: 0 10px;
+    }
+}
+//==============================================
+
+
+//==============================================
+//HTML,BODY
+body{
+    height: 100%;
+    font-family: ProximaNova;
+    background-color: #162831;
+    color: #fff;
+}
+body._lock{
+    overflow: hidden;
+}
+
+//=============================================
+//WRAPPER
+.wrapper{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+//=============================================
+
+
+//==============================================
+//SERVICE CLASSES
+
+._undercut{
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+    &:hover{
+        background-size: 100% 2px;
+        transition: background-size .3s;
+    }
+}
+._header-undercut{
+    border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+}
+._footer-undercut{
+    border-top: solid 1px rgba(255, 255, 255, 0.5);
+}
+._btn {
+    display: block;
+    padding: 9px 15px;
+    background-color: #018ABE;
+    border-radius: 3px;
+    width: 155px;
+    height: 36px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 140%;
+    transition: all 0.3s ease 0s;
+    @media (min-width: $md3){
+        &:hover{
+            background-color: #00597c;
+        }
+    }
+}
+._title{
+    font-family: 'El Messiri';
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 140%;
+    text-align: center;
+
+    @media (max-width: $md3){
+        font-size: 38px;
+    }
+}
+._item-hover{
+    transition: all 0.3s ease 0s;
+    @media (min-width: $md3){
+        &:hover{
+            border-bottom: 5px solid #018ABE;
+            box-shadow: 5px 5px 10px #00597c;
+        }
+    }
+}
+._date{
+    max-width: 96px;
+    background-color: #018ABE;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 135%;
+    padding: 6px 12px;
+    text-align: center;
+    color: #fff;
+}
+
+//ANIM
+._anim-items{
+    overflow: hidden;
+}
+._anim-show-left{
+    transform: translate(-100%, 0px);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+._anim-show-left._active,
+._active ._anim-show-left{
+    opacity: 1;
+    transform: translate(0px, 0px);
+}
+._anim-show-right{
+    transform: translate(100%, 0px);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+._anim-show-right._active,
+._active ._anim-show-right{
+    opacity: 1;
+    transform: translate(0px, 0px);
+}
+._anim-show-bottom{
+    transform: translate(0px, 50%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+._anim-show-bottom._active,
+._active ._anim-show-bottom{
+    opacity: 1;
+    transform: translate(0px, 0px);
+}
+._anim-scale{
+    transform: scale(0.5);
+    transition: all 0.8s ease 0.1s;
+}
+._anim-scale._active,
+._active ._anim-scale{
+    transform: scale(1);
+}
+
+//==============================================
+//HEADER
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #162831;
+    z-index: 10;
+}
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    @media (max-width: $md3){
+        
+    }   
+}
+.header__logo img{
+    max-width: 100%;
+}
+.menu__burger {
+    display: none;
+}
+.menu__list {
+    display: flex;
+}
+.menu__list li {
+    margin: 0px 0px 0px 50px;
+    @media (max-width: $md2){
+        margin: 0px 0px 0px 30px;
+    }
+    &:first-child{
+        margin-left: 0px;
+    }
+}
+.menu__link {
+    padding: 10px 0px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 135%;
+    letter-spacing: 1px;
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255));
+}
+
+@media (max-width: $md3){
+    .header__logo{
+        order: 2;
+    }
+    .menu__burger{
+        z-index: 5;
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 18px;
+        cursor: pointer;
+        order: 1;
+    }
+    .menu__burger span,
+    .menu__burger::before,
+    .menu__burger::after{
+        left: 0;
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        transition: all 0.3s ease 0s;
+        background-color: #fff;
+    }
+    .menu__burger::before,
+    .menu__burger::after{
+        content: '';
+    }
+    .menu__burger::before{
+        top: 0;
+    }
+    .menu__burger::after{
+        bottom: 0;
+    }
+    .menu__burger span{
+        top: 50%;
+        transform: scale(1) translate(0px, -50%);
+    }
+    .menu__body{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        transition: left 0.3s ease 0s;
+        z-index: 4;
+        padding: 200px 0px 0px 70px;
+        overflow: auto;
+    }
+    .menu__body._active{
+        left: 0;
+    }
+    .menu__burger._active span{
+		transform: scale(0) translate(0px, -50%);
+	}
+	.menu__burger._active::before{
+		top: 50%;
+		transform: rotate(-45deg) translate(0px, -50%);
+	}
+	.menu__burger._active::after{
+		bottom: 50%;
+		transform: rotate(45deg) translate(0px, 50%);
+	}
+    .menu__list{
+        flex-direction: column;
+    }
+    .menu__list li{
+        margin: 0px 0px 70px 0px;
+    }
+    .menu__list li:last-child{
+        margin-bottom: 0px;
+    }
+    .menu__link{
+        font-size: 28px;
+    }
+    .header__button{
+        order: 3;
+    }
+}
+//=========================================================
+
+
+//=========================================================
+//MAIN
+.main{
+    flex: 1 1 auto;
+    padding: 140px 0px 0px 0px;
+}
+
+//==================
+
+.preview {
+    max-width: 1296px;
+    padding: 140px 0px 230px 0px;
+    background-image: url(https://maevalar.github.io/RitmStyle/img/main/preview/preview-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    @media (max-width: $md4){
+        padding: 140px 0px 130px 0px;
+    }
+}
+.preview__subtitle {
+    display: flex;
+    margin: 0px auto 60px auto;
+    max-width: 429px;
+    justify-content: space-between;
+    font-size: 24px;
+    @media (max-width: $md4){
+        font-size: 18px;
+        padding: 0px 10px;
+    }
+}
+.preview__title {
+    max-width: 587px;
+    margin: 0px auto;
+    font-size: 64px;
+    line-height: 140%;
+    text-align: center;
+    @media (max-width: $md4){
+        font-size: 48px;
+    }
+}
+
+//========================
+.sessions {
+    padding: 150px 0px 0px 0px;
+}
+.sessions__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 480px;
+    margin: 0px auto 100px auto;
+}
+.sessions-icon {
+    color: #018ABE;
+    font-size: 14px;
+}
+.sessions__items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @media (max-width: $md1){
+        justify-content: center;
+    }
+    @media (max-width: $md3){
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.sessions-items__block1 {
+    display: flex;
+    & .sessions__item{
+        height: 540px;
+    }
+}
+.sessions__item {
+    display: flex;
+    align-items: flex-end;
+    background-image: url(https://maevalar.github.io/RitmStyle/img/main/sessions/item-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 258px;
+    padding: 0px 0px 50px 50px;
+    border-radius: 10px;
+    min-width: 416px;
+    color: #fff;
+    
+    @media (max-width: $md2){
+        min-width: 366px;
+    }
+    @media (max-width: $md4){
+        min-width: 300px;
+        padding: 0px 0px 20px 20px;
+    }
+}
+.sessions-item__title {
+    max-width: 336px;
+    font-size: 24px;
+    line-height: 140%;
+}
+.sessions-items__block2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: $md1){
+        & .sessions__item{
+            margin: 0px 0px 0px 25px;
+        }
+    }
+    @media (max-width: $md2){
+        flex-direction: row;
+        & .sessions__item{
+            margin: 25px 0px 0px 25px;
+            &:first-child{
+                margin-left: 0px;
+            }
+        }
+
+    }
+    @media (max-width: $md3){
+        flex-direction: column;
+        & .sessions__item{
+            margin: 25px 0px 0px 0px;
+        }
+    }
+}
+.sessions-items__block3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: $md1){
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+
+        & .sessions__item{
+            margin: 25px 0px 0px 25px;
+            &:first-child{
+                margin-left: 0px;
+            }
+        }
+    }
+    @media (max-width: $md3){
+        width: auto;
+        flex-direction: column;
+        & .sessions__item{
+            margin: 25px 0px 0px 0px;
+        }
+    }
+}
+//=========
+.slider__title {
+    padding: 150px 0px 120px 0px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+
+    & ._icon-leaf1,
+    ._icon-leaf2{
+        color: #018ABE;
+    }
+}
+.slide{
+    max-height: 350px;
+    overflow: auto;
+    max-width: 636px;
+    margin: 0px auto;
+    padding: 55px 60px;
+    background-color: #018ABE;
+    border-radius: 10px;
+
+    @media (max-width: $md3){
+        padding: 30px 30px;
+    }
+    @media (max-width: $md4){
+        padding: 10px 10px;
+    }
+    @media (min-width: $md3){
+        &::-webkit-scrollbar{
+            width: 7px;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: #204355;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: #00597c;
+            border-radius: 10px;
+        }
+        
+    }
+}
+.slide__title {
+    margin: 0px 0px 25px 0px;
+    font-size: 20px;
+    line-height: 140%;
+}
+.slide__text {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 140%;
+}
+.swiper-slide-active .slide{
+    transition: all 0.3s ease 0s;
+    transform: scale(1);
+}
+.swiper-slide-prev .slide{
+    transform: scale(0.7);
+    opacity: 0.6;
+    overflow: hidden;
+}
+.swiper-slide-next .slide{
+    transform: scale(0.7);
+    opacity: 0.6;
+    overflow: hidden;
+}
+.swiper-pagination{
+    position: relative;
+    margin: 70px 0px 0px 0px;
+}
+.swiper-pagination-bullet{
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background-color: #fff;
+    margin-left: 20px !important;
+    &:first-child{
+        margin-left: 0px !important;
+    }
+}
+.swiper-pagination-bullet-active{
+    background-color: #fff;
+    opacity: 1;
+}
+//======================
+
+.about {
+    padding: 150px 0px;
+    @media (max-width: $md3){
+        padding: 150px 0px 100px 0px;
+    }
+    @media (max-width: $md4){
+        padding: 150px 0px 0px 0px;
+    }
+}
+.about__container {
+    max-width: 1080px;
+}
+.about__title {
+    max-width: 390px;
+    margin: 0px auto 100px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & ._icon-leaf1,
+    ._icon-leaf2{
+        color: #018ABE;
+    }
+}
+.about__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0px 100px 0px;
+
+    & .about-item__image{
+        margin: 0px 0px 0px 84px;
+
+        @media (max-width: $md3){
+            margin: 0px 0px 0px 0px;
+        }
+    }
+    &:last-child{
+        flex-direction: row-reverse;
+        margin-bottom: 0px;
+        & .about-item__image{
+            margin: 0px 84px 0px 0px;
+
+            @media (max-width: $md3){
+                margin: 0px 0px 0px 0px;
+            }
+        }
+    }
+    @media (max-width: $md3){
+        margin: 0px 0px 50px 0px;
+        flex-direction: column;
+        justify-content: center;
+        &:last-child{
+            flex-direction: column;
+        }
+    }
+    @media (max-width: $md4){
+        margin: 0px 0px 0px 0px;
+    }
+
+}
+.about-item__content {
+    max-width: 466px;
+    @media (max-width: $md3){
+        margin-bottom: 50px;
+    }
+}
+.about-item__title {
+    padding: 0px 0px 35px 0px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+    @media (max-width: $md3){
+        text-align: center;
+    }
+}
+.about-item__text {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 140%;
+    color: rgba(255, 255, 255, 0.7);
+    @media (max-width: $md3){
+        text-align: center;
+    }
+}
+.about-item__image {
+    @media (max-width: $md2){
+        flex: 0 0 400px;
+    }
+
+}
+.about-item__image img{
+    max-width: 100%;
+    border-radius: 12px;
+}
+//=================================================
+.price {
+    padding: 0px 0px 155px 0px;
+}
+.price__container {
+    max-width: 1080px;
+}
+.price__title {
+    max-width: 520px;
+    margin: 0px auto 120px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & ._icon-leaf1,
+    ._icon-leaf2{
+        color: #018ABE;
+    }
+}
+.price__body{
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: $md3){
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.price__content {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: space-between;
+}
+.price__list {
+    @media (max-width: $md4){
+        flex: 0 0 60%;
+    }
+}
+.price__list li{
+    margin: 0px 0px 35px 0px;
+    transform: translate(-120%, 0px);
+    transition: all 0.3s ease 0s;
+}
+.price__list._active li:nth-child(1),
+.price__money._active li:nth-child(1){
+    transition: all 0.8s ease 0s;
+}
+.price__list._active li:nth-child(2),
+.price__money._active li:nth-child(2){
+    transition: all 0.8s ease 0.2s;
+}
+.price__list._active li:nth-child(3),
+.price__money._active li:nth-child(3){
+    transition: all 0.8s ease 0.4s;
+}
+.price__list._active li:nth-child(4),
+.price__money._active li:nth-child(4){
+    transition: all 0.8s ease 0.6s;
+}
+.price__list._active li:nth-child(5),
+.price__money._active li:nth-child(5){
+    transition: all 0.8s ease 0.8s;
+}
+.price__list._active li,
+.price__money._active li{
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+.price__link {
+    padding: 0px 0px 10px 0px;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    background-image: linear-gradient(#018ABE, #018ABE);
+    font-size: 18px;
+    line-height: 140%;
+
+    &::before{
+        color: #018ABE;
+        margin-right: 20px;
+        font-size: 14px;
+    }
+
+    @media (max-width: $md4){
+        font-size: 16px;
+    }
+}
+.price__money li {
+    transform: translate(-120%, 0px);
+    opacity: 0;
+    transition: all 0.3s ease 0s;
+    font-family: 'El Messiri';
+    margin: 0px 0px 35px 0px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 140%;
+
+    @media (max-width: $md3){
+        margin: 0px 0px 35px 50px;
+    }
+    @media (max-width: $md4){
+        font-size: 16px;
+        margin: 0px 0px 55px 20px;
+    }
+}
+.present__image {
+    display: block;
+    margin: 0px 0px 30px 0px;
+}
+.present__image img {
+    border-radius: 12px;
+    max-width: 100%;
+}
+.present__text {
+    font-family: 'El Messiri';
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 140%;
+    text-align: center;
+}
+//==============================================================
+
+
+//============================================================
+//FOOTER
+.footer {
+    padding: 60px 0px 30px 0px;
+}
+.footer__container {
+    padding: 30px 0px 0px 0px;
+}
+.footer__content {
+    font-size: 14px;
+    line-height: 135%;
+
+    @media (max-width: $md3){
+        text-align: center;
+    }
+}

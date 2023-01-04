@@ -1,0 +1,70 @@
+@import "variables.scss";
+
+//MAIN
+.news-main{
+    padding: 140px 0px 100px 0px !important;
+}
+.news__title{
+    max-width: 310px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px auto 50px auto;
+    padding: 20px 0px 0px 0px;
+
+    & ._icon-leaf1,
+    ._icon-leaf2{
+        color: #018ABE;
+    }
+}
+.news__items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.news__item {
+    width: 416px;
+    height: 258px;
+    padding: 30px 35px;
+    margin: 0px 24px 24px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(https://maevalar.github.io/RitmStyle/img/news/news-item-bg.png);
+    border-radius: 12px;
+    background-size: cover;
+
+    &:nth-child(3){
+        margin-right: 0px;
+    }
+    &:last-child{
+        margin-right: 0px;
+    }
+
+    @media (max-width: $md1){
+        &:nth-child(2){
+            margin-right: 0px;
+        }
+        &:nth-child(3){
+            margin-right: 24px;
+        }
+        &:nth-child(4){
+            margin-right: 0px;
+        }    
+    }
+    @media (max-width: $md2){
+        max-width: 350px;
+    }
+    @media (max-width: $md3){
+        max-width: 416px;
+        margin: 0px 0px 24px 0px;
+        &:nth-child(3){
+            margin-right: 0px;
+        }
+    }
+}
+.news-item__text._title{
+    font-size: 21px;
+    text-align: left;
+    color: #fff;
+}

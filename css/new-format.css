@@ -1,0 +1,16 @@
+.new-format__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0px auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.new-format__title ._icon-leaf1,
+.new-format__title ._icon-leaf2 {
+  color: #018ABE;
+}
